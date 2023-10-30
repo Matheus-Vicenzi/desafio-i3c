@@ -1,4 +1,5 @@
 import mysql.connector
+
 from model.ItemModel import ItemModel
 
 def create_conn():
@@ -11,7 +12,7 @@ def create_conn():
     return conn
 
 
-def persist_item(item: ItemModel):
+def save_item(item: ItemModel):
     try:
         conn = create_conn()
         cursor = conn.cursor()
@@ -27,6 +28,24 @@ def persist_item(item: ItemModel):
     except Exception as e:
         print(e)
         raise Exception("Erro ao persistir item")
+    
+
+def change_item(id: int, new_price_value: float, new_quantity_value: int):
+    try:
+        conn = create_conn()
+        cursor = conn.cursor()
+
+        sql = "UPDATE tb_item SET valor = %s, quantidade = %s WHERE id = %s"
+        val = (new_price_value, new_quantity_value, id)
+        cursor.execute(sql, val)
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+    except Exception as e:
+        print(e)
+        raise Exception("Erro ao alterar item")
     
 
     
