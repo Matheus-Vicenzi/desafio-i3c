@@ -1,15 +1,17 @@
 import mysql.connector
 
 from model.ItemModel import ItemModel
+from infra.Enviroment import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER
 
 
 def create_conn():
     conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="root",
-        database="desafio_db"
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
     )
+
     return conn
 
 
@@ -62,7 +64,7 @@ def get_item(id: int):
         result = cursor.fetchone()
 
         item = ItemModel(id=result[0], descricao=result[1], quantidade=result[2],
-                  valor=result[3], valor_36_meses=result[4], valor_60_meses=result[5])
+                         valor=result[3], valor_36_meses=result[4], valor_60_meses=result[5])
 
         cursor.close()
         conn.close()

@@ -1,16 +1,14 @@
 import openpyxl
 import traceback
+from infra.Enviroment import EXCEL_FILE_PATH
 
-
-excel_file_path = "/mnt/c/projetos/i3c/desafio-i3c/DESAFIO.xlsx"
-
-# AT, AI
+EXCEL_FILE_PATH = "/mnt/c/projetos/i3c/desafio-i3c/DESAFIO.xlsx"
 
 
 def change_item(item_id, new_price_value, new_quantity_value):
     try:
         wb = openpyxl.load_workbook(
-            excel_file_path, data_only=True)
+            EXCEL_FILE_PATH, data_only=True)
 
         sheet = wb['BOM']
 
@@ -26,7 +24,7 @@ def change_item(item_id, new_price_value, new_quantity_value):
                     wb, new_price_value=new_price_value, new_quantity_value=new_quantity_value, item_id=item_id)
                 break
 
-        wb.save(excel_file_path)
+        wb.save(EXCEL_FILE_PATH)
         return new_total_value
 
     except Exception as e:

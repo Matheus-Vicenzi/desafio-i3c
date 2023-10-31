@@ -8,7 +8,6 @@ from repository.ItensRepository import change_item as change_item_db
 from repository.ItensRepository import get_item as get_item_db
 
 from service.ExcelService import change_item as change_item_excel
-from service.ExcelService import change_item_total_value
 
 
 app = FastAPI()
