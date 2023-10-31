@@ -5,8 +5,10 @@ from model.ItemModel import ItemModel
 
 from repository.ItensRepository import save_item as save_item_db
 from repository.ItensRepository import change_item as change_item_db
+from repository.ItensRepository import get_item as get_item_db
+
 from service.ExcelService import change_item as change_item_excel
-from service.ExcelService import get_total_item_price
+from service.ExcelService import change_item_total_value
 
 
 app = FastAPI()
@@ -39,12 +41,11 @@ async def save_item(item: ItemModel):
 @app.patch("/item/{id}")
 async def change_price_quantity(id: int, new_price_value: float, new_quantity_value: int):
     try:
-        change_item_db(id, new_price_value, new_quantity_value)
-        change_item_excel(id, new_price_value, new_quantity_value)
-        total_item_price = get_total_item_price(id)
-        print(total_item_price)
+        change_item_db(id, float(new_price_value), int(new_quantity_value))
+        item: ItemModel = get_item_db(id)
+        # total_item_price = change_item_excel(id, float(new_price_value), int(new_quantity_value))
         return {"message": "Preço alterado com sucesso",
-                "content": {"newPrice": total_item_price}
+                "content": {"newTotalPrice": item.valor * item.quantidade}
                 }
 
     except Exception as e:
