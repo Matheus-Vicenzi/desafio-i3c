@@ -1,0 +1,5 @@
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD="root"
+DB_NAME="desafio_db"
+EXCEL_FILE_PATH="/mnt/c/projetos/i3c/desafio-i3c/DESAFIO.xlsx"

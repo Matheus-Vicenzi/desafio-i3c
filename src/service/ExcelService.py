@@ -2,8 +2,6 @@ import openpyxl
 import traceback
 from infra.Enviroment import EXCEL_FILE_PATH
 
-EXCEL_FILE_PATH = "/mnt/c/projetos/i3c/desafio-i3c/DESAFIO.xlsx"
-
 
 def change_item(item_id, new_price_value, new_quantity_value):
     try:
@@ -18,7 +16,7 @@ def change_item(item_id, new_price_value, new_quantity_value):
             if cell.value == item_id:
                 print(
                     f'O valor {cell.value} foi encontrado na célula {cell.coordinate}')
-                change_item_price(sheet, cell, new_price_value)
+                # change_item_price(sheet, cell, new_price_value)
                 change_item_quantity(sheet, cell, new_quantity_value)
                 new_total_value = change_item_total_value(
                     wb, new_price_value=new_price_value, new_quantity_value=new_quantity_value, item_id=item_id)
