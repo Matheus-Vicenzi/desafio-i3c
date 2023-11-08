@@ -1,10 +1,12 @@
 const saveItem = () => {
-    let descricao = document.getElementById("descricao");
-    let quantidade = document.getElementById("quantidade");
-    let valor = document.getElementById("valor");
-    let valor36meses = document.getElementById("valor36meses");
-    let valor60meses = document.getElementById("valor60meses");
+    const reloadIcon = document.getElementById('reloadIcon');
+    const descricao = document.getElementById("descricao");
+    const quantidade = document.getElementById("quantidade");
+    const valor = document.getElementById("valor");
+    const valor36meses = document.getElementById("valor36meses");
+    const valor60meses = document.getElementById("valor60meses");
 
+    
     let item = {
         descricao: descricao.value,
         quantidade: quantidade.value,
@@ -72,21 +74,20 @@ function validateSaveItemValues(item){
 function changeItem(){
     let id = document.getElementById("id-item");
     let quantidade = document.getElementById("quantidade");
-    let valor = document.getElementById("valor");
 
     fetch('http://localhost:8000/item?' + new URLSearchParams({
         id: id.value,
-        new_price_value: valor.value,
         new_quantity_value: quantidade.value
     }), {
         method: 'PATCH',
     }).then(response => {
         console.log(response);
-        alert("Item alterado com sucesso");
+        alert("Item alterado com sucesso, valor total do item: " )//+ response.valor_total);
         location.reload(true);
         console.log(response);
     }).catch(error => {
-        alert("Erro ao alterar item");
         console.log(error);
+        alert("Erro ao alterar item");
+        
     });
 }

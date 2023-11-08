@@ -38,13 +38,13 @@ async def save_item(item: ItemModel):
 
 
 @app.patch("/item/")
-async def change_price_quantity(id: int, new_price_value: float, new_quantity_value: int):
+async def change_item_quantity(id: int, new_quantity_value: int):
     try:
-        change_item_db(id, float(new_price_value), int(new_quantity_value))
+        change_item_db(id, int(new_quantity_value))
         item: ItemModel = get_item_db(id)
-        total_item_price = change_item_excel(id, float(new_price_value), int(new_quantity_value))
+        total_item_price = change_item_excel(id, int(new_quantity_value))
         return {"message": "Preço alterado com sucesso",
-                "content": {"newTotalPrice": item.valor * item.quantidade}
+                "content": {"newTotalPrice": total_item_price}
                 }
 
     except Exception as e:

@@ -34,13 +34,13 @@ def save_item(item: ItemModel):
         raise Exception("Erro ao persistir item")
 
 
-def change_item(id: int, new_price_value: float, new_quantity_value: int):
+def change_item(id: int, new_quantity_value: int):
     try:
         conn = create_conn()
         cursor = conn.cursor()
 
-        sql = "UPDATE tb_item SET valor = %s, quantidade = %s WHERE id = %s"
-        val = (new_price_value, new_quantity_value, id)
+        sql = "UPDATE tb_item SET quantidade = %s WHERE id = %s"
+        val = (new_quantity_value, id)
         cursor.execute(sql, val)
 
         conn.commit()

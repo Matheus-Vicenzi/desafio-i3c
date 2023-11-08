@@ -17,6 +17,7 @@
     <div class="container">
         <h2>Alteração de Item</h2>
         <form action="http://localhost:8000/item" method="post">
+            <div class="reload-icon" id="reloadIcon"></div>
             <div class="form-group">
                 <label for="id-item">Código do item:</label>
                 <input type="text" id="id-item" name="id-item" required>
@@ -24,10 +25,6 @@
             <div class="form-group">
                 <label for="quantidade">Quantidade:</label>
                 <input type="number" id="quantidade" name="quantidade" required>
-            </div>
-            <div class="form-group">
-                <label for="valor">Valor:</label>
-                <input type="number" id="valor" name="valor" required>
             </div>
             <div class="form-group">
                 <input class="submit-button" type="button" value="Alterar Item" onclick="changeItem()">
