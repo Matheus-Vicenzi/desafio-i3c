@@ -72,17 +72,6 @@ def get_item_cell_id(item_id):
             if cell.value == None:
                 continue
             print(cell.value)
-            # print("=A" in str(cell.value))
-            # if "=A" in str(cell.value):
-            #     print("entrou")
-            #     cell_value = str(cell.value)
-            #     cell_value = cell_value.replace("=A", "")
-            #     cell_value = cell_value.replace("+1", "")
-            #     print(cell_value)
-            #     cell_value = int(cell_value) + 1 - 4
-            #     if cell_value > 3:
-            #         cell_value = cell_value + 1
-            # if cell_value == item_id:
             if cell.value == item_id:
                 print(cell.coordinate)
                 return cell

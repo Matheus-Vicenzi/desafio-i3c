@@ -78,6 +78,17 @@ function changeItem(){
     let id = document.getElementById("id-item");
     let quantidade = document.getElementById("quantidade");
 
+    if (id.value == ""){
+        alert("Código do item é obrigatório");
+        document.getElementById("id-item").focus();
+        return(false);
+    }
+    if (quantidade.value == ""){
+        alert("Quantidade é obrigatório");
+        document.getElementById("quantidade").focus();
+        return(false);
+    }
+
     fetch('http://localhost:8000/item?' + new URLSearchParams({
         id: id.value,
         new_quantity_value: quantidade.value
