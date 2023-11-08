@@ -17,6 +17,7 @@ def create_conn():
 
 def save_item(item: ItemModel):
     try:
+        print("save item inicio")
         conn = create_conn()
         cursor = conn.cursor()
 
@@ -28,6 +29,7 @@ def save_item(item: ItemModel):
         conn.commit()
         cursor.close()
         conn.close()
+        print("save item fim")
 
     except Exception as e:
         print(e)
@@ -36,6 +38,7 @@ def save_item(item: ItemModel):
 
 def change_item(id: int, new_quantity_value: int):
     try:
+        print("change item inicio")
         conn = create_conn()
         cursor = conn.cursor()
 
@@ -46,6 +49,7 @@ def change_item(id: int, new_quantity_value: int):
         conn.commit()
         cursor.close()
         conn.close()
+        print("change item fim")
 
     except Exception as e:
         print(e)

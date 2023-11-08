@@ -1,4 +1,5 @@
 const saveItem = () => {
+    console.log("saveItem inicio")
     const reloadIcon = document.getElementById('reloadIcon');
     const descricao = document.getElementById("descricao");
     const quantidade = document.getElementById("quantidade");
@@ -27,13 +28,14 @@ const saveItem = () => {
             },
         body: JSON.stringify(item)
     }).then(response => {
+        console.log(response);
         alert("Item salvo com sucesso");
         location.reload(true);
-        console.log(response);
     }).catch(error => {
         alert("Erro ao salvar item");
         console.log(error);
     });
+    console.log("saveItem fim")
 }
 
 function validateSaveItemValues(item){
@@ -72,6 +74,7 @@ function validateSaveItemValues(item){
 }
 
 function changeItem(){
+    console.log("changeItem inicio")
     let id = document.getElementById("id-item");
     let quantidade = document.getElementById("quantidade");
 
@@ -80,14 +83,17 @@ function changeItem(){
         new_quantity_value: quantidade.value
     }), {
         method: 'PATCH',
-    }).then(response => {
+    })
+    .then(response => response.json())
+    .then(response => {
+        if (response.detail){throw new Error(response.detail);}
         console.log(response);
-        alert("Item alterado com sucesso, valor total do item: " )//+ response.valor_total);
-        location.reload(true);
-        console.log(response);
+        alert("Item alterado com sucesso, proposta gerada: " + response.content.newTotalPrice);
+        //location.reload(true);
     }).catch(error => {
         console.log(error);
         alert("Erro ao alterar item");
         
     });
+    console.log("changeItem fim")
 }
